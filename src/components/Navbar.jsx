@@ -1,14 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { navLinks } from '../../constant'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
 const Navbar = () => {
+    const [scrolling, setScrolling] = useState(false);
+    const [lastScrollPosition, setLastScrollPosition] = useState(0);
+
+    window.addEventListener('scroll', () => {
+        let currentScrollPosition = window.scrollY;
+        if (currentScrollPosition > lastScrollPosition) {
+            setScrolling(true);
+        } else {
+            setScrolling(false);
+        }
+
+        setLastScrollPosition(currentScrollPosition <= 0 ? 0 : currentScrollPosition);
+    });
     useGSAP(() => {
         const navTween = gsap.timeline({
             scrollTrigger: {
                 trigger: 'nav',
-                start: 'bottom top'
+                start: 'bottom top',
             }
         })
 
@@ -21,8 +34,10 @@ const Navbar = () => {
             ease: 'power1.inOut'
         })
     }, [])
+
+    
   return (
-    <nav>
+    <nav className={`${scrolling ? 'opacity-0' : 'opacity-100'}`}>
         <div>
             <a href="#home" className='flex items-center gap-2'>
                 <img src="/images/logo.png" alt="logo" />

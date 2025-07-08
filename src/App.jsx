@@ -13,14 +13,47 @@ import { useState
 import { useEffect } from 'react';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+const [loading, setLoading] = useState(true);
 
-const assetPromises = [];
+useEffect(() => {
+  const assetPromises = [];
 
 const imagesUrl = [
-  '/images/hero-left-leaf.png',
-  '/images/hero-right-leaf.png',
-  '/images/noise.png',
+  'public/images/hero-left-leaf.png',
+  'public/images/hero-right-leaf.png',
+  'public/images/noise.png',
+  'public/images/abt1.png',
+  'public/images/abt2.png',
+  'public/images/abt3.png',
+  'public/images/abt4.png',
+  'public/images/abt5.png',
+  'public/images/arrow.png',
+  'public/images/check.png',
+  'public/images/cocktail-left-leaf.png',
+  'public/images/cocktail-right-leaf.png',
+  'public/images/cup-2.png',
+  'public/images/drink-1.png',
+  'public/images/drink-2.png',
+  'public/images/drink-3.png',
+  'public/images/drink-4.png',
+  'public/images/fav.png',
+  'public/images/fb.png',
+  'public/images/footer-drinks.png',
+  'public/images/footer-left-leaf.png',
+  'public/images/footer-right-leaf.png',
+  'public/images/insta.png',
+  'public/images/left-arrow.png',
+  'public/images/mask-img.png',
+  'public/images/noise.png',
+  'public/images/profile1.png',
+  'public/images/profile2.png',
+  'public/images/profile3.png',
+  'public/images/profile4.png',
+  'public/images/right-arrow.png',
+  'public/images/slider-left-leaf.png',
+  'public/images/slider-right-leaf.png',
+  'public/images/under-img.jpg',
+  'public/images/x.png',
 ];
 
 imagesUrl.forEach((src) => {
@@ -60,11 +93,15 @@ Promise.all(assetPromises)
     setLoading(false);
   });
 
+}, [loading])
+
   return (
     <>
     {
       loading ? (
-        <h1>Loading</h1>
+        <div className='h-dvh w-dvw flex-center'>
+          <img className='size-14 md:size-30 animate-pulse duration-100 ease-in-out' src="/images/logo.png" alt="Loader" />
+        </div>
       ) : (
         <main>
           <Navbar />
